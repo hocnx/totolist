@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Todolist
+  #task_create_div
+    form(action='/create' method='post')
+      input(type='text' name='task_name')
+  #list_div
+    ul
+      each task in tasks
+        li
+          p= task.content
+          a(href = '/edit/' + task._id) Edit
+          a(href = '/delete/' + task._id) Delete
